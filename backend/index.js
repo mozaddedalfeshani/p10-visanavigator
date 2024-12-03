@@ -25,6 +25,8 @@ async function run() {
       res.json(show);
     });
     // console.log(show);
+  } catch (err) {
+    console.log(err);
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();
