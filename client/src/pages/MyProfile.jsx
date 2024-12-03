@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 
 export default function MyProfile() {
-  const { user } = useContext(AuthContext);
+  const { user, signOutUser } = useContext(AuthContext);
 
   return (
     <div className="container mx-auto mt-5 card flex flex-col  justify-center items-center">
@@ -26,9 +26,12 @@ export default function MyProfile() {
           <div className="right-side items-center justify-center flex flex-col md:ml-4 card gap-4 card-bordered p-6">
             <h3 className="card-title">{user?.displayName || "User Name"}</h3>
             <p>{user?.email || "user@example.com"}</p>
-            <Link to="/profileEdit" className="w-full btn btn-outline">
+            {/* <Link to="/profileEdit" className="w-full btn btn-outline">
               Update Profile
-            </Link>
+            </Link> */}
+            <button onClick={signOutUser} className=" btn btn-outline">
+              Logout
+            </button>
           </div>
         </div>
       </div>
