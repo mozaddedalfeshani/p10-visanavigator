@@ -10,7 +10,6 @@ const NavBar = () => {
       <Link to="/allvisas">Allvisas</Link>
     </li>,
   ];
-
   return (
     <div>
       <div className="navbar bg-base-100">

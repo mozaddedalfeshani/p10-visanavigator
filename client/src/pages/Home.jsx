@@ -1,13 +1,12 @@
 import React from "react";
-import NavBar from "../components/Home/NavBar";
-import { Outlet } from "react-router-dom";
+import SliderShow from "../components/Home/CoverflowSlider";
 
-export default function Home() {
+const Home = () => {
   return (
     <div>
-  
-      <NavBar />
-      <Outlet />
+      <SliderShow />
     </div>
   );
-}
+};
+
+export default Home;
