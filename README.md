@@ -13,9 +13,6 @@ A user-friendly Visa Navigator Portal that simplifies the process of checking vi
 ## 🔗 Live Demo
 
 [Live Website]()
-```html
-<a href="#" onclick="alert('Coming soon!')">Live Website</a>
-```
 
 ## 🚀 Technologies Used
 
