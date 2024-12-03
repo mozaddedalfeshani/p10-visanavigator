@@ -13,15 +13,21 @@ const client = new MongoClient(uri);
 
 async function run() {
   try {
-    const result = await client.connect();
+    await client.connect();
 
     const database = client.db("visaease").collection("latestCards");
 
     const show = await database.find().toArray();
+
+    //ALL GET , POST
+    app.get("/cards", async (req, res) => {
+      const show = await database.find().toArray();
+      res.json(show);
+    });
     // console.log(show);
   } finally {
     // Ensures that the client will close when you finish/error
-    await client.close();
+    // await client.close();
   }
 }
 run().catch(console.dir);
