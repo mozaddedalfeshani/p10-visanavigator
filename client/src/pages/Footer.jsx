@@ -25,16 +25,16 @@ const Footer = () => {
           <a className="link link-hover">Cookie policy</a>
         </nav>
         <form>
-          <h6 className="footer-title">Newsletter</h6>
-          <fieldset className="form-control w-80">
+          <h6 className="footer-title ">Newsletter</h6>
+          <fieldset className="form-control w-full md:w-80">
             <label className="label">
               <span className="label-text">Enter your email address</span>
             </label>
-            <div className="join">
+            <div className="join flex flex-col md:flex-row">
               <input
                 type="text"
                 placeholder="username@site.com"
-                className="input input-bordered join-item"
+                className="input input-bordered join-item mb-2 md:mb-0"
               />
               <button className="btn btn-primary join-item">Subscribe</button>
             </div>
