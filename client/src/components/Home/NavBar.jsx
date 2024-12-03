@@ -50,7 +50,7 @@ const NavBar = () => {
             <UserIcon user={user} />
           ) : (
             <Link to="/authPage" className="btn">
-              Button
+              Login
             </Link>
           )}
         </div>
