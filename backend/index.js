@@ -1,31 +1,21 @@
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+const { MongoClient } = require("mongodb");
 
-const app = express();
+// Replace the uri string with your connection string.
+const uri = "mongodb://localhost:27017";
 
-// Middleware
-app.use(cors());
-app.use(bodyParser.json());
+const client = new MongoClient(uri);
 
-// MongoDB connection
-mongoose.connect('mongodb://localhost:27017/yourdbname', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+async function run() {
+  try {
+    const result = await client.connect();
+    console.log(result);
+    const database = client.db("visaease").collection("latestCards");
 
-mongoose.connection.on('connected', () => {
-  console.log('Connected to MongoDB');
-});
-
-mongoose.connection.on('error', (err) => {
-  console.log('Error connecting to MongoDB:', err);
-});
-
-// ...existing code...
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+    const show = await database.find().toArray();
+    console.log(show);
+  } finally {
+    // Ensures that the client will close when you finish/error
+    // await client.close();
+  }
+}
+run().catch(console.dir);
