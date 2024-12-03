@@ -46,7 +46,13 @@ const NavBar = () => {
           <ul className="menu menu-horizontal px-1">{items}</ul>
         </div>
         <div className="navbar-end">
-          {user ? <UserIcon user={user} /> : <a className="btn">Button</a>}
+          {user ? (
+            <UserIcon user={user} />
+          ) : (
+            <Link to="/authPage" className="btn">
+              Button
+            </Link>
+          )}
         </div>
       </div>
     </div>
