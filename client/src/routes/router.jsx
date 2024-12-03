@@ -12,6 +12,14 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+      {
+        path: "/allvisas",
+        element: <div>All visas</div>,
+      },
+      {
+        path: "/visa-details/:country",
+        element: <div>Visa details</div>,
+      },
     ],
   },
 ]);
