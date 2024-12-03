@@ -20,7 +20,7 @@ async function run() {
     const show = await database.find().toArray();
 
     //ALL GET , POST
-    app.get("/cards", async (req, res) => {
+    app.get("/latestCards", async (req, res) => {
       const show = await database.find().toArray();
       res.json(show);
     });
