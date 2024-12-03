@@ -40,12 +40,24 @@ export default function LoginForm() {
     }
   };
 
+  const handleSignupSubmit = (e) => {
+    e.preventDefault();
+    console.info("Signup button clicked");
+    // ...existing code...
+  };
+
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    console.info("Login button clicked");
+    // ...existing code...
+  };
+
   return (
     <div className="mx-auto">
       {!login && (
         <div className="signup-area flex items-center justify-center my-11">
           <div className="card bg-base-100 w-full px-4 py-10 max-w-sm shrink-0 shadow-2xl">
-            <form className="card-body p-0">
+            <form className="card-body p-0" onSubmit={handleSignupSubmit}>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>
@@ -136,7 +148,7 @@ export default function LoginForm() {
       {login && (
         <div className="login-area flex items-center justify-center py-10">
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-            <form className="card-body">
+            <form className="card-body" onSubmit={handleLoginSubmit}>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>

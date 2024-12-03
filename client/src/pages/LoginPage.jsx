@@ -3,7 +3,7 @@ import LoginForm from "../components/Auth/LoginForm";
 
 const LoginPage = () => {
   return (
-    <div>
+    <div className="container mx-auto">
       <LoginForm />
     </div>
   );
