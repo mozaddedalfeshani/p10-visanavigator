@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import UserIcon from "../common/UserIcon";
 
 const NavBar = () => {
+  const { user } = useContext(AuthContext);
+
   const items = [
     <li key="home" className="text-black font-roboto font-medium">
       <Link to="/">Home</Link>
@@ -32,7 +36,7 @@ const NavBar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[999] mt-3 w-52 p-2 shadow">
               {items}
             </ul>
           </div>
@@ -42,7 +46,7 @@ const NavBar = () => {
           <ul className="menu menu-horizontal px-1">{items}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          {user ? <UserIcon user={user} /> : <a className="btn">Button</a>}
         </div>
       </div>
     </div>

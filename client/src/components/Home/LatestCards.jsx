@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Card from "../utils/Card";
+import Card from "../common/Card";
 
 const LatestCards = () => {
   const navigate = useNavigate();
