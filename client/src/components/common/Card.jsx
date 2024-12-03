@@ -4,7 +4,7 @@ const Card = ({ visaCard, handleSeeDetails }) => {
   return (
     <div
       onClick={() => handleSeeDetails(visaCard)}
-      className="card bg-base-100 w-96 shadow-xl">
+      className="card bg-base-100 lg:w-96 md:w-80 shadow-xl">
       <figure>
         <img src={visaCard.country_image} alt={visaCard.country_name} />
       </figure>
