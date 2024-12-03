@@ -47,7 +47,9 @@ const NavBar = () => {
         </div>
         <div className="navbar-end">
           {user ? (
-            <UserIcon user={user} />
+            <Link to="/">
+              <UserIcon user={user} />
+            </Link>
           ) : (
             <Link to="/authPage" className="btn">
               Login
