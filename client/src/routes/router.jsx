@@ -3,6 +3,8 @@ import Root from "../pages/MainLayout";
 import MainLayout from "../pages/MainLayout";
 import Home from "../pages/Home";
 import LoginPage from "../pages/LoginPage";
+import Profile from "../components/Auth/Profile";
+import PageNotFound from "../components/utils/PageNotFound";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +26,14 @@ const router = createBrowserRouter([
       {
         path: "/authPage",
         element: <LoginPage />,
+      },
+      {
+        path: "/profilePage",
+        element: <Profile />,
+      },
+      {
+        path: "*",
+        element: <PageNotFound />,
       },
     ],
   },

@@ -47,7 +47,7 @@ const NavBar = () => {
         </div>
         <div className="navbar-end">
           {user ? (
-            <Link to="/">
+            <Link to="/profilePage">
               <UserIcon user={user} />
             </Link>
           ) : (
