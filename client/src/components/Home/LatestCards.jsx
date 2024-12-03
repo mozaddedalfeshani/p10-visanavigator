@@ -19,7 +19,8 @@ const LatestCards = () => {
   };
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center my-8 flex-col">
+      <h1 className="text-4xl font-bold my-4">Latest Visa </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-auto">
         {visaCards.map((visa) => (
           <Card
