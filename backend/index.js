@@ -21,7 +21,7 @@ async function run() {
 
     //ALL GET , POST
     app.get("/latestCards", async (req, res) => {
-      const show = await database.find().toArray();
+      const show = await database.find().limit(6).toArray();
       res.json(show);
     });
     // console.log(show);

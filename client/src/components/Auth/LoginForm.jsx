@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../providers/AuthProvider";
 
-export default function LoginForm() {
+export default function LoginForm({ onLogin }) {
   const [login, setLogin] = useState(true);
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -47,13 +47,22 @@ export default function LoginForm() {
   const handleSignupSubmit = (e) => {
     e.preventDefault();
     console.info("Signup button clicked");
+    const email = e.target.email.value;
+    const name = e.target.name.value;
+    const photoUrl = e.target.photoUrl.value;
+    const password = e.target.password.value;
+    console.log({ email, name, photoUrl, password });
     // ...existing code...
   };
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
     console.info("Login button clicked");
-    // ...existing code...
+    // ...existing login logic...
+    const loginSuccessful = true; // Replace with actual login success condition
+    if (loginSuccessful) {
+      onLogin(true);
+    }
   };
 
   return (

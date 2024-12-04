@@ -10,13 +10,14 @@ import app from "../services/authService";
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   //function to sign in with Google
   const auth = getAuth(app);
   const [user, setUser] = useState(null);
   const googleProvider = new GoogleAuthProvider();
   const googleSignIn = () => {
+    setLoading(true);
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         setUser(result.user);

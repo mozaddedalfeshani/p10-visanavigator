@@ -13,8 +13,7 @@ export default function PrivateProvider({ children }) {
     return <LoadingUI />; // Show loading UI while authentication state is being determined
   }
   if (user && user?.email) {
-      return children; // If user is authenticated, render the children components
-      
+    return children; // If user is authenticated, render the children components
   }
-  return <Navigate state={{ from: location }} to="/login" />; // If not authenticated, navigate to login page with the current location as state
+  return <Navigate state={{ from: location }} to="/authPage" />; // If not authenticated, navigate to login page with the current location as state
 }
