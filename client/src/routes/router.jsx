@@ -8,8 +8,8 @@ import PageNotFound from "../components/utils/PageNotFound";
 import MyProfile from "../pages/MyProfile";
 import PrivateProvider from "../providers/PrivateProvider";
 import AddVisa from "../pages/AddVisa";
-import MyAddedVisas from "../pages/MyAddedVisas";
-import MyVisaApplications from "../pages/MyVisaApplications";
+import MyAddedVisas from "../pages/MyAddedVisas.jsx";
+import MyVisaApplications from "../pages/MyVisaApplications.jsx";
 
 const router = createBrowserRouter([
   {
