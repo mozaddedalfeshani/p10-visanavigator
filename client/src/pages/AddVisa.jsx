@@ -47,7 +47,7 @@ const AddVisa = () => {
     // Send the JSON data to the server
 
     //send data to the server
-    fetch("http://localhost:8000/addVisa", {
+    fetch("https://backend-rho-drab-25.vercel.app/addVisa", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -56,7 +56,6 @@ const AddVisa = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-
         // Clear the form
         setFormData({
           country_image: "",

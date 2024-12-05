@@ -10,7 +10,7 @@ const MyVisaApplications = () => {
   userEmail = user?.email;
 
   useEffect(() => {
-    fetch(`http://localhost:8000/visas/email/${userEmail}`)
+    fetch(`https://backend-rho-drab-25.vercel.app/visas/email/${userEmail}`)
       .then((response) => response.json())
       .then((data) => setApplications(data))
       .catch((error) =>
@@ -19,7 +19,9 @@ const MyVisaApplications = () => {
   }, [userEmail]);
 
   const handleCancel = (id) => {
-    fetch(`http://localhost:8000/visas/delete/${id}`, { method: "DELETE" })
+    fetch(`https://backend-rho-drab-25.vercel.app/visas/delete/${id}`, {
+      method: "DELETE",
+    })
       .then(() => setApplications(applications.filter((app) => app._id !== id)))
       .catch((error) =>
         console.error("Error cancelling visa application:", error)

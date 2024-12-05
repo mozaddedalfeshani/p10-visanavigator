@@ -30,7 +30,9 @@ const router = createBrowserRouter([
         path: "/visa-details/:id",
         element: <UpdateVisa />,
         loader: async ({ params }) => {
-          const response = await fetch(`http://localhost:8000/visas/id/${params.id}`);
+          const response = await fetch(
+            `https://backend-rho-drab-25.vercel.app/visas/id/${params.id}`
+          );
           return response.json();
         },
       },
@@ -67,7 +69,9 @@ const router = createBrowserRouter([
         path: "updateVisa/:id",
         element: <UpdateVisa />,
         loader: async ({ params }) => {
-          const response = await fetch(`http://localhost:8000/visas/id/${params.id}`);
+          const response = await fetch(
+            `https://backend-rho-drab-25.vercel.app/visas/id/${params.id}`
+          );
           return response.json();
         },
       },

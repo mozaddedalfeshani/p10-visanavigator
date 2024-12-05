@@ -20,8 +20,8 @@ const CardWithModal = ({ item, fetchData }) => {
 
   const handleUpdate = (e) => {
     e.preventDefault();
-   
-    fetch(`http://localhost:8000/visas/updateVisa${_id}`, {
+
+    fetch(`https://backend-rho-drab-25.vercel.app/visas/updateVisa${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -31,7 +31,6 @@ const CardWithModal = ({ item, fetchData }) => {
       .then((response) => response.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
-          
           Swal.fire({
             title: "Updated!",
             text: "Your Visa Info has been updated.",
@@ -58,8 +57,6 @@ const CardWithModal = ({ item, fetchData }) => {
   };
 
   const handleDelete = (id) => {
-
-
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -70,7 +67,7 @@ const CardWithModal = ({ item, fetchData }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:8000/visas/delete/${id}`, {
+        fetch(`https://backend-rho-drab-25.vercel.app/visas/delete/${id}`, {
           method: "DELETE",
         })
           .then((response) => response.json())
