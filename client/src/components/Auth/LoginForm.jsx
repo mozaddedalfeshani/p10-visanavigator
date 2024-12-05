@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../providers/AuthProvider";
 
-export default function LoginForm({ onLogin }) {
+export default function LoginForm() {
   const [login, setLogin] = useState(true);
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -14,7 +14,8 @@ export default function LoginForm({ onLogin }) {
   const [showPassword, setShowPassword] = useState(false);
 
   //collect from useContext
-  const { googleSignIn } = useContext(AuthContext);
+  const { googleSignIn, signInUser, createAccount, updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
@@ -44,24 +45,33 @@ export default function LoginForm({ onLogin }) {
     }
   };
 
-  const handleSignupSubmit = (e) => {
+  const handleSignupSubmit = async (e) => {
     e.preventDefault();
     console.info("Signup button clicked");
     const email = e.target.email.value;
     const name = e.target.name.value;
     const photoUrl = e.target.photoUrl.value;
     const password = e.target.password.value;
-    
-    // ...existing code...
+
+    try {
+      const user = await createAccount(email, password, name, photoUrl);
+      navigate("/"); // Navigate to home after successful signup
+    } catch (error) {
+      console.error("Signup error: ", error);
+    }
   };
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     console.info("Login button clicked");
-    // ...existing login logic...
-    const loginSuccessful = true; // Replace with actual login success condition
-    if (loginSuccessful) {
-      onLogin(true);
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    try {
+      await signInUser(email, password);
+      navigate("/"); // Navigate to home after successful login
+    } catch (error) {
+      console.error("Login error: ", error);
     }
   };
 
@@ -153,9 +163,9 @@ export default function LoginForm({ onLogin }) {
             </div>
             <p className="text-center py-2">
               Already Have Account?{" "}
-              <button className="text-blue-400" onClick={() => setLogin(true)}>
+              <span className="text-blue-400 cursor-pointer" onClick={() => setLogin(true)}>
                 Login
-              </button>
+              </span>
             </p>
           </div>
         </div>
@@ -223,11 +233,9 @@ export default function LoginForm({ onLogin }) {
               </div>
               <p className="text-center py-2">
                 Don't have an account?{" "}
-                <button
-                  className="text-blue-400"
-                  onClick={() => setLogin(false)}>
+                <span className="text-blue-400 cursor-pointer" onClick={() => setLogin(false)}>
                   Sign up
-                </button>
+                </span>
               </p>
             </form>
           </div>

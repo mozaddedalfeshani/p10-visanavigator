@@ -7,8 +7,10 @@ import {
   signInWithPopup,
   signOut,
   updateProfile,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
 import app from "../services/authService";
+import Swal from "sweetalert2";
 
 export const AuthContext = createContext();
 
@@ -28,6 +30,27 @@ const AuthProvider = ({ children }) => {
       unsubscribe(); // Cleanup the subscription on component unmount
     };
   }, [auth]);
+
+  // create account with email and password and store user image link and name
+  const createAccount = (email, password, name, photoURL) => {
+    return new Promise((resolve, reject) => {
+      if (!email) {
+        reject("Email is required");
+        return;
+      }
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((result) => {
+          updateUserProfile(name, photoURL);
+          resolve(result.user);
+        })
+        .catch((error) => {
+          const errorMessage = error.message;
+          console.error("Error creating account: " + errorMessage);
+          Swal.fire("Signup Error", errorMessage, "error");
+          reject(errorMessage);
+        });
+    });
+  };
 
   //function to sign in with Google
   const googleSignIn = () => {
@@ -86,6 +109,7 @@ const AuthProvider = ({ children }) => {
         .catch((error) => {
           const errorMessage = error.message;
           console.error("Error signing in: " + errorMessage); // Log wrong credentials
+          Swal.fire("Login Error", errorMessage, "error");
           reject(errorMessage); // Reject the promise with the error message
         });
     });
@@ -100,6 +124,7 @@ const AuthProvider = ({ children }) => {
     setLoading,
     updateUserProfile,
     signInUser,
+    createAccount,
   };
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
