@@ -20,7 +20,7 @@ A user-friendly Visa Navigator Portal that simplifies the process of checking vi
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB
 - **Authentication:** Firebase Authentication
-- **Hosting:** Netlify (Client) & Vercel (Server)
+- **Hosting:** Firebase (Client) & Vercel (Server)
 
 ## 📦 Packages Used
 
@@ -146,5 +146,3 @@ A user-friendly Visa Navigator Portal that simplifies the process of checking vi
 ## 🙌 Contributing
 
     Contributions are welcome! Feel free to fork the repository and submit pull requests.
-
-
