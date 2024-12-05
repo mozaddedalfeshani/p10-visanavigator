@@ -40,7 +40,26 @@ const AddVisa = () => {
       ...formData,
       userEmail: user?.email || "No user email",
     };
-    console.log(JSON.stringify(dataToSubmit, null, 2));
+
+    const jsonData = JSON.stringify(dataToSubmit, null, 2);
+    // Send the JSON data to the server
+    console.log(jsonData);
+    //send data to the server
+    fetch("http://localhost:8000/addVisa", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: jsonData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        console.log("Done sending data to the server");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   return (

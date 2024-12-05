@@ -14,9 +14,8 @@ const client = new MongoClient(uri);
 async function run() {
   try {
     await client.connect();
-
+    // this const are for lates card faces
     const database = client.db("visaease").collection("latestCards");
-
     const show = await database.find().toArray();
 
     //ALL GET , POST
@@ -24,6 +23,18 @@ async function run() {
       const show = await database.find().limit(6).toArray();
       res.json(show);
     });
+
+    // get specific visa info
+
+    //get visa info
+    app.post("/addVisa", async (req, res) => {
+      const visa = req.body;
+      // for specific user visa info saved in mongo
+      const userVisa = client.db("userVisa").collection(visa.userEmail);
+      await userVisa.insertOne(visa);
+      res.json({ status: "ok" });
+    });
+
     // console.log(show);
   } catch (err) {
     console.log(err);
