@@ -48,25 +48,26 @@ A user-friendly Visa Navigator Portal that simplifies the process of checking vi
 │   ├── favicon.ico
 │   └── manifest.json
 ├── src/
-│   ├── components/
-│   │   ├── common/
-│   │   │   ├── Navbar.jsx
-│   │   │   ├── Footer.jsx
-│   │   │   └── ProtectedRoute.jsx
-│   │   ├── Home/
-│   │   │   ├── Banner.jsx
-│   │   │   ├── LatestVisas.jsx
-│   │   │   ├── ExtraSection1.jsx
-│   │   │   └── ExtraSection2.jsx
-│   │   ├── Visa/
-│   │   │   ├── VisaCard.jsx
-│   │   │   └── VisaDetailsModal.jsx
-│   │   ├── Auth/
-│   │   │   ├── LoginForm.jsx
-│   │   │   └── RegisterForm.jsx
-│   │   └── Modals/
-│   │       ├── ToastNotification.jsx
-│   │       └── ApplyVisaModal.jsx
+│   |── components
+|   |    ├── Auth
+|   |    │   ├── LoginForm.jsx
+|   |    │   └── Profile.jsx
+|   |    ├── common
+|   |    │   ├── Card.jsx
+|   |    │   ├── LoadingUI.jsx
+|   |    │   └── UserIcon.jsx
+|   |    ├── Home
+|   |    │   ├── AddVisa.jsx
+|   |    │   ├── Card.jsx
+|   |    │   ├── ContactUs.jsx
+|   |    │   ├── CoverflowSlider.jsx
+|   |    │   ├── ExtraOne.jsx
+|   |    │   ├── LatestCards.jsx
+|   |    │   └── NavBar.jsx
+|   |    └── utils
+|   |        ├── CardWithModal.jsx
+|   |        └── PageNotFound.jsx
+|   |
 │   ├── pages/
 │   │   ├── Home.jsx
 │   │   ├── AllVisas.jsx
