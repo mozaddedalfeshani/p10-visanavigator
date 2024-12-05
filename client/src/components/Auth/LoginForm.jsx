@@ -51,7 +51,7 @@ export default function LoginForm({ onLogin }) {
     const name = e.target.name.value;
     const photoUrl = e.target.photoUrl.value;
     const password = e.target.password.value;
-    console.log({ email, name, photoUrl, password });
+    
     // ...existing code...
   };
 

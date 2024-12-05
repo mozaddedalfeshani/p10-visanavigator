@@ -20,7 +20,7 @@ const CardWithModal = ({ item, fetchData }) => {
 
   const handleUpdate = (e) => {
     e.preventDefault();
-    console.log(formData); // Log form data to console
+   
     fetch(`http://localhost:8000/visas/updateVisa${_id}`, {
       method: "PUT",
       headers: {
@@ -31,7 +31,7 @@ const CardWithModal = ({ item, fetchData }) => {
       .then((response) => response.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
-          console.log("Data", data);
+          
           Swal.fire({
             title: "Updated!",
             text: "Your Visa Info has been updated.",
@@ -58,7 +58,7 @@ const CardWithModal = ({ item, fetchData }) => {
   };
 
   const handleDelete = (id) => {
-    console.log(id);
+
 
     Swal.fire({
       title: "Are you sure?",

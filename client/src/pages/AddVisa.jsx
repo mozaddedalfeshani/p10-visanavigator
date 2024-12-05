@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-import Swal from "sweetalert2"; // Add this import
+import Swal from "sweetalert2"; // Ensure this import is correct
 
 const AddVisa = () => {
   const { user } = useContext(AuthContext);
@@ -45,7 +45,7 @@ const AddVisa = () => {
 
     const jsonData = JSON.stringify(dataToSubmit, null, 2);
     // Send the JSON data to the server
-    console.log(jsonData);
+
     //send data to the server
     fetch("http://localhost:8000/addVisa", {
       method: "POST",
@@ -56,8 +56,7 @@ const AddVisa = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        console.log("Done sending data to the server");
+
         // Clear the form
         setFormData({
           country_image: "",

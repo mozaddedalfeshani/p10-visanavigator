@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "tailwindcss/tailwind.css";
 import "daisyui/dist/full.css";
+import { AuthContext } from "../providers/AuthProvider";
 
 const MyVisaApplications = () => {
   const [applications, setApplications] = useState([]);
-  const userEmail = "developer.mozadded@gmail.com"; // Replace with actual logged-in user's email
+  let userEmail = "f";
+  const { user } = useContext(AuthContext);
+  userEmail = user?.email;
 
   useEffect(() => {
     fetch(`http://localhost:8000/visas/email/${userEmail}`)
@@ -38,7 +41,8 @@ const MyVisaApplications = () => {
             </figure>
             <div className="card-body">
               <h2 className="card-title">{app.country_name}</h2>
-              <p>Visa Type: {app.visa_type}</p>
+              <div className="badge badge-primary mb-2">{app.visa_type}</div>
+
               <p>Processing Time: {app.processing_time} days</p>
               <p>Fee: ${app.fee}</p>
               <p>Validity: {app.validity} days</p>
@@ -46,9 +50,7 @@ const MyVisaApplications = () => {
               <p>
                 Applied Date: {new Date(app.appliedDate).toLocaleDateString()}
               </p>
-              <p>
-                Applicant's Name: {app.first_name} {app.last_name}
-              </p>
+              <p>Applicant's Name: {user.displayName}</p>
               <p>Applicant’s Email: {app.email}</p>
               <div className="badge badge-info mb-2">
                 Status: {app.application_method}

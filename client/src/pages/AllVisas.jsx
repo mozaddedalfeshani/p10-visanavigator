@@ -14,7 +14,7 @@ const AllVisas = () => {
   }, []);
 
   const handleSeeDetails = (visaId) => {
-    console.log("See details for visa:", visaId);
+
     // Add navigation or modal logic here
   };
 
@@ -23,7 +23,7 @@ const AllVisas = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mx-auto">
         {visas.map(
           (visa) => (
-            console.log(visa),
+
             (
               <Card
                 key={visa._id}

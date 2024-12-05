@@ -80,7 +80,7 @@ const AuthProvider = ({ children }) => {
       signInWithEmailAndPassword(auth, email, password)
         .then((result) => {
           setUser(result.user); // Set the user state with the authenticated user
-          console.log("Successfully logged in with email and password"); // Log successful email/password login
+
           resolve(result.user); // Resolve the promise with the user data
         })
         .catch((error) => {
