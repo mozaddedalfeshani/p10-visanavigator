@@ -34,6 +34,8 @@ A user-friendly Visa Navigator Portal that simplifies the process of checking vi
 - **react-dom:** ^18.3.1
 - **react-icons:** ^5.4.0
 - **react-router-dom:** ^7.0.2
+- **react-simple-typewriter:** ^5.0.1
+- **react-tooltip:** ^5.28.0
 - **sort-by:** ^1.2.0
 - **sweetalert2:** ^11.14.5
 - **swiper:** ^11.1.15
@@ -145,6 +147,4 @@ A user-friendly Visa Navigator Portal that simplifies the process of checking vi
 
     Contributions are welcome! Feel free to fork the repository and submit pull requests.
 
-## 📄 License
 
-    This project is licensed under the MIT License.
