@@ -12,7 +12,7 @@ A user-friendly Visa Navigator Portal that simplifies the process of checking vi
 
 ## 🔗 Live Demo
 
-[Live Website]()
+[Live Website](https://visaease-55e7b.web.app/)
 
 ## 🚀 Technologies Used
 
@@ -22,7 +22,24 @@ A user-friendly Visa Navigator Portal that simplifies the process of checking vi
 - **Authentication:** Firebase Authentication
 - **Hosting:** Netlify (Client) & Vercel (Server)
 
+## 📦 Packages Used
+
+- **axios:** ^1.7.9
+- **dotenv:** ^16.4.7
+- **firebase:** ^11.0.2
+- **firebase-admin:** ^13.0.1
+- **localforage:** ^1.10.0
+- **match-sorter:** ^8.0.0
+- **react:** ^18.3.1
+- **react-dom:** ^18.3.1
+- **react-icons:** ^5.4.0
+- **react-router-dom:** ^7.0.2
+- **sort-by:** ^1.2.0
+- **sweetalert2:** ^11.14.5
+- **swiper:** ^11.1.15
+
 ## 📂 Folder Structure
+
 ```visa-navigator/
 ├── public/
 │   ├── index.html
@@ -101,18 +118,22 @@ A user-friendly Visa Navigator Portal that simplifies the process of checking vi
 ## 📝 Key Functionality
 
 - **Home Page:**
+
   - Banner slider
   - Latest visas section with 6 newest visa cards
   - Extra informative sections
 
 - **Add Visa:**
+
   - Private/protected route
   - Form to add visa details including country image, visa type, required documents, fee, etc.
 
 - **All Visas Page:**
+
   - Displays all visas in a grid layout with "See Details" functionality.
 
 - **Visa Details Page:**
+
   - Shows complete information about a visa.
   - "Apply for Visa" button with a modal form.
 
