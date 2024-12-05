@@ -6,9 +6,8 @@ const MainLayout = () => {
     <div>
       <div className="font-roboto">
         <NavBar />
-        
-          <Outlet />
-       
+
+        <Outlet />
       </div>
     </div>
   );

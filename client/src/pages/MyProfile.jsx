@@ -1,35 +1,37 @@
 import React, { useContext } from "react";
-
-import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 
 export default function MyProfile() {
   const { user, signOutUser } = useContext(AuthContext);
 
   return (
-    <div className="container mx-auto mt-5 card flex flex-col  justify-center items-center">
-      <div>
-        <h1 className="text-3xl font-semibold text-gray-800 text-center">
-          Welcome , {user?.displayName || "User Name"}
-        </h1>
-      </div>
-      <div className="w-full md:w-auto flex flex-col md:flex-row ">
-        <div className="card-body flex flex-col md:flex-row justify-around items-center">
-          <div className="left-side mb-4 md:mb-0">
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="container mx-auto card flex flex-col items-center p-6  rounded-md">
+        <div className="mb-6">
+          <h1 className="text-3xl font-semibold text-gray-800 text-center">
+            Welcome, {user?.displayName || "User Name"}
+          </h1>
+        </div>
+        {/* Responsive Layout */}
+        <div className="flex flex-col md:flex-row items-center md:items-start md:gap-8">
+          {/* Left Side: User Image */}
+          <div className="mb-4 md:mb-0">
             <img
               src={user?.photoURL || "default-photo-url"}
               alt="User Photo"
-              className="img-fluid rounded-circle rounded-full"
+              className="rounded-full shadow-md"
               style={{ width: "150px", height: "150px" }}
             />
           </div>
-          <div className="right-side items-center justify-center flex flex-col md:ml-4 card gap-4 card-bordered p-6">
-            <h3 className="card-title">{user?.displayName || "User Name"}</h3>
-            <p>{user?.email || "user@example.com"}</p>
-            {/* <Link to="/profileEdit" className="w-full btn btn-outline">
-              Update Profile
-            </Link> */}
-            <button onClick={signOutUser} className=" btn btn-outline">
+          {/* Right Side: User Info */}
+          <div className="flex flex-col items-center md:items-start text-center md:text-left gap-4">
+            <h3 className="text-xl font-bold">
+              {user?.displayName || "User Name"}
+            </h3>
+            <p className="text-gray-600">{user?.email || "user@example.com"}</p>
+            <button
+              onClick={signOutUser}
+              className="btn btn-outline px-4 py-2 border-gray-500 text-gray-700 hover:bg-gray-100">
               Logout
             </button>
           </div>
