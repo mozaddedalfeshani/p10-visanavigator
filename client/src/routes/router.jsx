@@ -27,10 +27,11 @@ const router = createBrowserRouter([
         element: <AllVisas />,
       },
       {
-        path: "/visa-details/:country",
+        path: "/visa-details/:id",
         element: <UpdateVisa />,
-        loader: ({ params }) => {
-          fetch(`http://localhost:8000/visas/${params.country}`);
+        loader: async ({ params }) => {
+          const response = await fetch(`http://localhost:8000/visas/id/${params.id}`);
+          return response.json();
         },
       },
 
@@ -65,8 +66,10 @@ const router = createBrowserRouter([
       {
         path: "updateVisa/:id",
         element: <UpdateVisa />,
-        loader: ({ params }) =>
-          fetch(`http://localhost:8000/visas/id/${params.id}`),
+        loader: async ({ params }) => {
+          const response = await fetch(`http://localhost:8000/visas/id/${params.id}`);
+          return response.json();
+        },
       },
       {
         path: "/myVisaApplication",

@@ -46,7 +46,6 @@ async function run() {
       const result = await database.findOne(query);
       res.json(result);
     });
-    // the address be like http://localhost:8000/visas/id/61f3b3b3b3b3b3b3b3b3b3b3
 
     //get visa info
     app.post("/addVisa", async (req, res) => {
