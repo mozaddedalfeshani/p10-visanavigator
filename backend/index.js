@@ -15,23 +15,36 @@ async function run() {
   try {
     await client.connect();
     // this const are for lates card faces
-    const database = client.db("visaease").collection("latestCards");
+    const database = client.db("visaease").collection("visas");
     const show = await database.find().toArray();
 
     //ALL GET , POST
     app.get("/latestCards", async (req, res) => {
-      const show = await database.find().limit(6).toArray();
+      const show = await database.find().sort({ _id: -1 }).limit(6).toArray();
       res.json(show);
     });
 
-    // get specific visa info
+    // get all visa info
+    app.get("/visas", async (req, res) => {
+      const visas = await database.find().sort({ _id: -1 }).toArray();
+      res.json(visas);
+    });
+
+    // get visa info by email
+    app.get("/visas/:email", async (req, res) => {
+      const email = req.params.email;
+      const userVisa = client.db("userSpecific").collection(email);
+      const visas = await userVisa.find().toArray();
+      res.json(visas);
+    });
 
     //get visa info
     app.post("/addVisa", async (req, res) => {
       const visa = req.body;
       // for specific user visa info saved in mongo
-      const userVisa = client.db("userVisa").collection(visa.userEmail);
-      await userVisa.insertOne(visa);
+      const userVisa = client.db("userSpecific").collection(visa.email);
+      await database.insertOne(visa); // Insert visa into the latestCards collection
+      await userVisa.insertOne(visa); // Insert visa into the user's specific collection
       res.json({ status: "ok" });
     });
 

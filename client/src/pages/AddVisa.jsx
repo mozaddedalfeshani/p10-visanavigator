@@ -4,16 +4,16 @@ import { AuthContext } from "../providers/AuthProvider";
 const AddVisa = () => {
   const { user } = useContext(AuthContext);
   const [formData, setFormData] = useState({
-    countryImage: "",
-    countryName: "",
-    visaType: "",
-    processingTime: "",
-    requiredDocuments: [],
+    country_image: "",
+    country_name: "",
+    visa_type: "",
+    processing_time: "",
+    required_documents: [],
     description: "",
-    ageRestriction: "",
+    age_restriction: "",
     fee: "",
     validity: "",
-    applicationMethod: "",
+    application_method: "",
   });
 
   const handleChange = (e) => {
@@ -21,9 +21,9 @@ const AddVisa = () => {
     if (type === "checkbox") {
       setFormData((prevData) => ({
         ...prevData,
-        requiredDocuments: checked
-          ? [...prevData.requiredDocuments, value]
-          : prevData.requiredDocuments.filter((doc) => doc !== value),
+        required_documents: checked
+          ? [...prevData.required_documents, value]
+          : prevData.required_documents.filter((doc) => doc !== value),
       }));
     } else {
       setFormData((prevData) => ({
@@ -35,10 +35,10 @@ const AddVisa = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add user email to the formData
+    // Add user email to the formDatas
     const dataToSubmit = {
       ...formData,
-      userEmail: user?.email || "No user email",
+      email: user?.email || "No user email",
     };
 
     const jsonData = JSON.stringify(dataToSubmit, null, 2);
@@ -73,8 +73,8 @@ const AddVisa = () => {
             </label>
             <input
               type="text"
-              name="countryImage"
-              value={formData.countryImage}
+              name="country_image"
+              value={formData.country_image}
               onChange={handleChange}
               placeholder="Enter image URL"
               className="input input-bordered w-full"
@@ -86,17 +86,18 @@ const AddVisa = () => {
             </label>
             <input
               type="text"
-              name="countryName"
-              value={formData.countryName}
+              name="country_name"
+              value={formData.country_name}
               onChange={handleChange}
+              placeholder="Enter country name"
               className="input input-bordered w-full"
             />
           </div>
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1">Visa Type:</label>
             <select
-              name="visaType"
-              value={formData.visaType}
+              name="visa_type"
+              value={formData.visa_type}
               onChange={handleChange}
               className="select select-bordered w-full">
               <option value="">Select Visa Type</option>
@@ -111,9 +112,10 @@ const AddVisa = () => {
             </label>
             <input
               type="text"
-              name="processingTime"
-              value={formData.processingTime}
+              name="processing_time"
+              value={formData.processing_time}
               onChange={handleChange}
+              placeholder="Enter processing time"
               className="input input-bordered w-full"
             />
           </div>
@@ -125,9 +127,9 @@ const AddVisa = () => {
               <div>
                 <input
                   type="checkbox"
-                  name="requiredDocuments"
+                  name="required_documents"
                   value="Valid passport"
-                  checked={formData.requiredDocuments.includes(
+                  checked={formData.required_documents.includes(
                     "Valid passport"
                   )}
                   onChange={handleChange}
@@ -138,9 +140,9 @@ const AddVisa = () => {
               <div>
                 <input
                   type="checkbox"
-                  name="requiredDocuments"
+                  name="required_documents"
                   value="Visa application form"
-                  checked={formData.requiredDocuments.includes(
+                  checked={formData.required_documents.includes(
                     "Visa application form"
                   )}
                   onChange={handleChange}
@@ -151,9 +153,9 @@ const AddVisa = () => {
               <div>
                 <input
                   type="checkbox"
-                  name="requiredDocuments"
+                  name="required_documents"
                   value="Recent passport-sized photograph"
-                  checked={formData.requiredDocuments.includes(
+                  checked={formData.required_documents.includes(
                     "Recent passport-sized photograph"
                   )}
                   onChange={handleChange}
@@ -171,6 +173,7 @@ const AddVisa = () => {
               name="description"
               value={formData.description}
               onChange={handleChange}
+              placeholder="Enter description"
               className="textarea textarea-bordered w-full"
             />
           </div>
@@ -180,9 +183,10 @@ const AddVisa = () => {
             </label>
             <input
               type="number"
-              name="ageRestriction"
-              value={formData.ageRestriction}
+              name="age_restriction"
+              value={formData.age_restriction}
               onChange={handleChange}
+              placeholder="Enter age restriction"
               className="input input-bordered w-full"
             />
           </div>
@@ -193,6 +197,7 @@ const AddVisa = () => {
               name="fee"
               value={formData.fee}
               onChange={handleChange}
+              placeholder="Enter fee"
               className="input input-bordered w-full"
             />
           </div>
@@ -203,6 +208,7 @@ const AddVisa = () => {
               name="validity"
               value={formData.validity}
               onChange={handleChange}
+              placeholder="Enter validity period (in days)"
               className="input input-bordered w-full"
             />
           </div>
@@ -210,13 +216,15 @@ const AddVisa = () => {
             <label className="block text-sm font-medium mb-1">
               Application Method:
             </label>
-            <input
-              type="text"
-              name="applicationMethod"
-              value={formData.applicationMethod}
+            <select
+              name="application_method"
+              value={formData.application_method}
               onChange={handleChange}
-              className="input input-bordered w-full"
-            />
+              className="select select-bordered w-full">
+              <option value="">Select Application Method</option>
+              <option value="Online">Online</option>
+              <option value="Offline">Offline</option>
+            </select>
           </div>
           <button type="submit" className="btn btn-primary w-full">
             Add Visa

@@ -10,6 +10,7 @@ import PrivateProvider from "../providers/PrivateProvider";
 import AddVisa from "../pages/AddVisa";
 import MyAddedVisas from "../pages/MyAddedVisas.jsx";
 import MyVisaApplications from "../pages/MyVisaApplications.jsx";
+import AllVisas from "../pages/AllVisas.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/allvisas",
-        element: <div>All visas</div>,
+        element: <AllVisas />,
       },
       {
         path: "/visa-details/:country",

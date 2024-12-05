@@ -2,7 +2,6 @@ import React from "react";
 import { FiLogOut } from "react-icons/fi";
 
 const UserIcon = ({ user }) => {
-  console.log(user);
   const firstName = user?.displayName?.split(" ")[0] || "Anonymous";
   return (
     <div className="flex-row flex gap-3 shadow-sm items-center justify-around">

@@ -1,29 +1,40 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
-
+import React, { useEffect } from "react";
+import { useState } from "react";
+import Card from "../components/common/Card";
 const AllVisas = () => {
-  const history = useHistory();
-  const visas = [
-    // Example visa data
-    { id: 1, name: "Visa A", country: "Country A", type: "Type A" },
-    { id: 2, name: "Visa B", country: "Country B", type: "Type B" },
-    // ...more visa data
-  ];
+  const [visas, setVisas] = useState([]);
 
-  const handleSeeDetails = (id) => {
-    history.push(`/visa-details/${id}`);
+  useEffect(() => {
+    const fetchVisas = async () => {
+      const response = await fetch("http://localhost:8000/visas");
+      const data = await response.json();
+      setVisas(data);
+    };
+    fetchVisas();
+  }, []);
+
+  const handleSeeDetails = (visaId) => {
+    console.log("See details for visa:", visaId);
+    // Add navigation or modal logic here
   };
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "16px" }}>
-      {visas.map((visa) => (
-        <div key={visa.id} style={{ border: "1px solid #ccc", padding: "16px", borderRadius: "8px" }}>
-          <h3>{visa.name}</h3>
-          <p>Country: {visa.country}</p>
-          <p>Type: {visa.type}</p>
-          <button onClick={() => handleSeeDetails(visa.id)}>See Details</button>
-        </div>
-      ))}
+    <div className="flex flex-col items-center justify-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-auto">
+        {visas.map(
+          (visa) => (
+            console.log(visa),
+            (
+              <Card
+                key={visa._id}
+                visaCard={visa}
+                handleSeeDetails={handleSeeDetails}
+              />
+            )
+          )
+        )}
+      </div>
+      )
     </div>
   );
 };
