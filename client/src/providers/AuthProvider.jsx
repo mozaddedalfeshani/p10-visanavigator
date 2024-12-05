@@ -13,7 +13,7 @@ import app from "../services/authService";
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const auth = getAuth(app);
   const [user, setUser] = useState(null);
   const googleProvider = new GoogleAuthProvider();
