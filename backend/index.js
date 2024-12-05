@@ -1,4 +1,4 @@
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectID } = require("mongodb");
 const express = require("express");
 const cors = require("cors");
 
@@ -45,6 +45,21 @@ async function run() {
       const userVisa = client.db("userSpecific").collection(visa.email);
       await database.insertOne(visa); // Insert visa into the latestCards collection
       await userVisa.insertOne(visa); // Insert visa into the user's specific collection
+      res.json({ status: "ok" });
+    });
+
+    // Update visa info
+    app.put("/api/visas/:id", async (req, res) => {
+      const id = req.params.id;
+      const updatedVisa = req.body;
+      await database.updateOne({ _id: new ObjectID(id) }, { $set: updatedVisa });
+      res.json({ status: "ok" });
+    });
+
+    // Delete visa info
+    app.delete("/api/visas/:id", async (req, res) => {
+      const id = req.params.id;
+      await database.deleteOne({ _id: new ObjectID(id) });
       res.json({ status: "ok" });
     });
 

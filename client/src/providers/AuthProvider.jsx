@@ -20,17 +20,16 @@ const AuthProvider = ({ children }) => {
 
   // Listen for authentication state to change.
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(getAuth(app), (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user); // Set the user state when authentication state changes
       setLoading(false); // Set loading to false when authentication state is determined
     });
     return () => {
       unsubscribe(); // Cleanup the subscription on component unmount
     };
-  }, []);
+  }, [auth]);
 
   //function to sign in with Google
-
   const googleSignIn = () => {
     setLoading(true);
     signInWithPopup(auth, googleProvider)
@@ -40,23 +39,23 @@ const AuthProvider = ({ children }) => {
       })
       .catch((error) => {
         console.error(error);
+        setLoading(false);
       });
   };
 
   //for logout function
   const signOutUser = () => {
-    signOut(getAuth(app))
+    signOut(auth)
       .then(() => {
         setUser(null); // Clear the user state on sign out
       })
       .catch((error) => {
-        notify("Error signing out: " + error.message); // Notify on sign out error
+        console.error("Error signing out: " + error.message); // Log sign out error
       });
   };
 
   // Update user profile
   const updateUserProfile = (displayName, photoURL) => {
-    const auth = getAuth(app);
     if (auth.currentUser) {
       updateProfile(auth.currentUser, {
         displayName,
@@ -66,7 +65,7 @@ const AuthProvider = ({ children }) => {
           setUser({ ...auth.currentUser, displayName, photoURL }); // Update the user state with the new profile information
         })
         .catch((error) => {
-          notify("Error updating profile: " + error.message); // Notify on profile update error
+          console.error("Error updating profile: " + error.message); // Log profile update error
         });
     }
   };
@@ -78,15 +77,15 @@ const AuthProvider = ({ children }) => {
         reject("Email is required");
         return;
       }
-      signInWithEmailAndPassword(getAuth(app), email, password)
+      signInWithEmailAndPassword(auth, email, password)
         .then((result) => {
           setUser(result.user); // Set the user state with the authenticated user
-          notify("Successfully logged in with email and password"); // Notify on successful email/password login
+          console.log("Successfully logged in with email and password"); // Log successful email/password login
           resolve(result.user); // Resolve the promise with the user data
         })
         .catch((error) => {
           const errorMessage = error.message;
-          notify("Error signing in: " + errorMessage); // Notify on wrong credentials
+          console.error("Error signing in: " + errorMessage); // Log wrong credentials
           reject(errorMessage); // Reject the promise with the error message
         });
     });
