@@ -1,4 +1,4 @@
-const { MongoClient, ObjectID } = require("mongodb");
+const { MongoClient, ObjectID, ObjectId } = require("mongodb");
 const express = require("express");
 const cors = require("cors");
 
@@ -60,10 +60,12 @@ async function run() {
     });
 
     // Delete visa info
-    app.delete("/api/visas/:id", async (req, res) => {
+    app.delete("/visas/delete/:id", async (req, res) => {
       const id = req.params.id;
-      await database.deleteOne({ _id: new ObjectID(id) });
-      res.json({ status: "ok" });
+      const query = { _id: new ObjectId(id) };
+      const result = await database.deleteOne(query);
+      // res.json({ status: "ok" });
+      res.send(result);
     });
 
     // console.log(show);

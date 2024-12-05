@@ -1,6 +1,41 @@
 import React from "react";
+import Swal from "sweetalert2";
 
 const CardWithModal = ({ item }) => {
+  const { _id } = item;
+  console.log(_id);
+
+  const handleDelete = (id) => {
+    console.log(id);
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:8000/visas/delete/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+            }
+          });
+      }
+    });
+  };
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <figure>
@@ -15,7 +50,11 @@ const CardWithModal = ({ item }) => {
         <p>Application Method: {item.application_method}</p>
         <div className="card-actions justify-end">
           <button className="btn btn-primary">Update</button>
-          <button className="btn btn-secondary">Delete</button>
+          <button
+            className="btn btn-secondary"
+            onClick={() => handleDelete(_id)}>
+            Delete
+          </button>
         </div>
       </div>
     </div>
