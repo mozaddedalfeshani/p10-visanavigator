@@ -13,18 +13,26 @@ const NavBar = () => {
     <li key="allvisas" className="text-black font-roboto font-medium">
       <Link to="/allvisas">All Visas</Link>
     </li>,
-    <li key="addVisa" className="text-black font-roboto font-medium">
-      <Link to="/addVisa">Add Visa</Link>
-    </li>,
-    <li key="myAddedVisa" className="text-black font-roboto font-medium">
-      <Link to="/myAddedVisa">My Added Visa</Link>
-    </li>,
-    <li key="myVisaApplication" className="text-black font-roboto font-medium">
-      <Link to="/myVisaApplication">My Visa Application</Link>
-    </li>,
-    <li key="profilePage" className="text-black font-roboto font-medium">
-      <Link to="/profilePage">Profile</Link>
-    </li>,
+    user && (
+      <li key="addVisa" className="text-black font-roboto font-medium">
+        <Link to="/addVisa">Add Visa</Link>
+      </li>
+    ),
+    user && (
+      <li key="myAddedVisa" className="text-black font-roboto font-medium">
+        <Link to="/myAddedVisa">My Added Visa</Link>
+      </li>
+    ),
+    user && (
+      <li key="myVisaApplication" className="text-black font-roboto font-medium">
+        <Link to="/myVisaApplication">My Visa Application</Link>
+      </li>
+    ),
+    user && (
+      <li key="profilePage" className="text-black font-roboto font-medium">
+        <Link to="/profilePage">Profile</Link>
+      </li>
+    ),
   ];
   return (
     <div>
