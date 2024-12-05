@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Card = ({ visaCard, handleSeeDetails }) => {
+const Card = ({ visaCard }) => {
   return (
     <div
       onClick={() => handleSeeDetails(visaCard._id)}
