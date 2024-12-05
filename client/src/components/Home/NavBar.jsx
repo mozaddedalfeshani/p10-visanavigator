@@ -1,41 +1,75 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import UserIcon from "../common/UserIcon";
+import { FaSun, FaMoon } from "react-icons/fa";
 
 const NavBar = () => {
   const { user, signOutUser } = useContext(AuthContext);
+  const [theme, setTheme] = useState("dark");
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+  };
 
   const items = [
-    <li key="home" className="text-black font-roboto font-medium">
+    <li
+      key="home"
+      className={`font-roboto font-medium ${
+        theme === "dark" ? "text-white" : "text-black"
+      }`}>
       <Link to="/">Home</Link>
     </li>,
-    <li key="allvisas" className="text-black font-roboto font-medium">
+    <li
+      key="allvisas"
+      className={`font-roboto font-medium ${
+        theme === "dark" ? "text-white" : "text-black"
+      }`}>
       <Link to="/allvisas">All Visas</Link>
     </li>,
     user && (
-      <li key="addVisa" className="text-black font-roboto font-medium">
+      <li
+        key="addVisa"
+        className={`font-roboto font-medium ${
+          theme === "dark" ? "text-white" : "text-black"
+        }`}>
         <Link to="/addVisa">Add Visa</Link>
       </li>
     ),
     user && (
-      <li key="myAddedVisa" className="text-black font-roboto font-medium">
+      <li
+        key="myAddedVisa"
+        className={`font-roboto font-medium ${
+          theme === "dark" ? "text-white" : "text-black"
+        }`}>
         <Link to="/myAddedVisa">My Added Visa</Link>
       </li>
     ),
     user && (
       <li
         key="myVisaApplication"
-        className="text-black font-roboto font-medium">
+        className={`font-roboto font-medium ${
+          theme === "dark" ? "text-white" : "text-black"
+        }`}>
         <Link to="/myVisaApplication">My Visa Application</Link>
       </li>
     ),
     user && (
-      <li key="profilePage" className="text-black font-roboto font-medium">
+      <li
+        key="profilePage"
+        className={`font-roboto font-medium ${
+          theme === "dark" ? "text-white" : "text-black"
+        }`}>
         <Link to="/profilePage">Profile</Link>
       </li>
     ),
   ];
+
   return (
     <div>
       <div className="navbar bg-base-100 shadow p-3">
@@ -72,8 +106,11 @@ const NavBar = () => {
           <ul className="menu menu-horizontal px-1">{items}</ul>
         </div>
         <div className="navbar-end">
+          <button onClick={toggleTheme} className="btn btn-ghost rounded-full">
+            {theme === "dark" ? <FaSun /> : <FaMoon />}
+          </button>
           {user ? (
-            <button onClick={signOutUser} className="btn btn-ghost ">
+            <button onClick={signOutUser} className="btn btn-ghost">
               <UserIcon user={user} />
             </button>
           ) : (
