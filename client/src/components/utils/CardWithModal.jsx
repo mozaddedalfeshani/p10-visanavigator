@@ -1,10 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
 const CardWithModal = ({ item }) => {
   const { _id } = item;
-  console.log(_id);
+  const [showModal, setShowModal] = useState(false);
+  const [formData, setFormData] = useState({
+    country_name: item.country_name,
+    visa_type: item.visa_type,
+    processing_time: item.processing_time,
+    fee: item.fee,
+    validity: item.validity,
+    application_method: item.application_method,
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    console.log(formData); // Log form data to console
+    Swal.fire({
+      title: "Updated!",
+      text: "Your Visa Info has been updated.",
+      icon: "success",
+    });
+    setShowModal(false);
+  };
 
   const handleDelete = (id) => {
     console.log(id);
@@ -19,21 +43,11 @@ const CardWithModal = ({ item }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:8000/visas/delete/${id}`, {
-          method: "DELETE",
-        })
-          .then((res) => {
-            return res.json();
-          })
-          .then((data) => {
-            if (data.deletedCount > 0) {
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your Visa Info has been deleted.",
-                icon: "success",
-              });
-            }
-          });
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your Visa Info has been deleted.",
+          icon: "success",
+        });
       }
     });
   };
@@ -50,9 +64,11 @@ const CardWithModal = ({ item }) => {
         <p>Validity: {item.validity} days</p>
         <p>Application Method: {item.application_method}</p>
         <div className="card-actions justify-end">
-          <Link to={`/updateVisa/${_id}`} className="btn btn-primary">
+          <button
+            className="btn btn-primary"
+            onClick={() => setShowModal(true)}>
             Update
-          </Link>
+          </button>
           <button
             className="btn btn-secondary"
             onClick={() => handleDelete(_id)}>
@@ -60,6 +76,101 @@ const CardWithModal = ({ item }) => {
           </button>
         </div>
       </div>
+      {showModal && (
+        <div className="modal modal-open">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">Update Visa Information</h3>
+            <form onSubmit={handleUpdate}>
+              <div className="mb-4">
+                <label className="block text-sm font-medium mb-1">
+                  Country Name:
+                </label>
+                <input
+                  type="text"
+                  name="country_name"
+                  value={formData.country_name}
+                  onChange={handleInputChange}
+                  className="input input-bordered w-full"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium mb-1">
+                  Visa Type:
+                </label>
+                <select
+                  name="visa_type"
+                  value={formData.visa_type}
+                  onChange={handleInputChange}
+                  className="select select-bordered w-full">
+                  <option value="">Select Visa Type</option>
+                  <option value="Tourist visa">Tourist visa</option>
+                  <option value="Student visa">Student visa</option>
+                  <option value="Official visa">Official visa</option>
+                </select>
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium mb-1">
+                  Processing Time:
+                </label>
+                <input
+                  type="text"
+                  name="processing_time"
+                  value={formData.processing_time}
+                  onChange={handleInputChange}
+                  className="input input-bordered w-full"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium mb-1">Fee:</label>
+                <input
+                  type="number"
+                  name="fee"
+                  value={formData.fee}
+                  onChange={handleInputChange}
+                  className="input input-bordered w-full"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium mb-1">
+                  Validity:
+                </label>
+                <input
+                  type="number"
+                  name="validity"
+                  value={formData.validity}
+                  onChange={handleInputChange}
+                  className="input input-bordered w-full"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium mb-1">
+                  Application Method:
+                </label>
+                <select
+                  name="application_method"
+                  value={formData.application_method}
+                  onChange={handleInputChange}
+                  className="select select-bordered w-full">
+                  <option value="">Select Application Method</option>
+                  <option value="Online">Online</option>
+                  <option value="Offline">Offline</option>
+                </select>
+              </div>
+              <div className="modal-action">
+                <button type="submit" className="btn btn-primary">
+                  Submit
+                </button>
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={() => setShowModal(false)}>
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
