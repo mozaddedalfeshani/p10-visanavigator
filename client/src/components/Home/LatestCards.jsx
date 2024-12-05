@@ -7,7 +7,7 @@ const LatestCards = () => {
   const [visaCards, setVisaCards] = useState([]);
 
   useEffect(() => {
-    fetch("https://backend-rho-drab-25.vercel.app/latestCards")
+    fetch("https://backend-tau-vert-85.vercel.app/latestCards")
       .then((res) => res.json())
       .then((data) => {
         setVisaCards(data);

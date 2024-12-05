@@ -10,6 +10,7 @@ const UserIcon = ({ user }) => {
             <img
               src={user?.photoURL || "default-avatar.png"}
               alt={`${user?.displayName || "User"}'s avatar`}
+              title={user?.displayName || "User"}
             />
           </div>
         </div>

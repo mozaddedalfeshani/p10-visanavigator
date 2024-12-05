@@ -9,7 +9,7 @@ const MyAddedVisas = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `https://backend-rho-drab-25.vercel.app/visas/email/${user.email}`
+        `https://backend-tau-vert-85.vercel.app/visas/email/${user.email}`
       );
       const data = await response.json();
       setVisas(data);

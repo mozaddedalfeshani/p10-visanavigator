@@ -47,7 +47,7 @@ const AddVisa = () => {
     // Send the JSON data to the server
 
     //send data to the server
-    fetch("https://backend-rho-drab-25.vercel.app/addVisa", {
+    fetch("https://backend-tau-vert-85.vercel.app/addVisa", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

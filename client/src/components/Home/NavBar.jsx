@@ -32,33 +32,28 @@ const NavBar = () => {
       }`}>
       <Link to="/allvisas">All Visas</Link>
     </li>,
-    user && (
-      <li
-        key="addVisa"
-        className={`font-roboto font-medium ${
-          theme === "dark" ? "text-white" : "text-black"
-        }`}>
-        <Link to="/addVisa">Add Visa</Link>
-      </li>
-    ),
-    user && (
-      <li
-        key="myAddedVisa"
-        className={`font-roboto font-medium ${
-          theme === "dark" ? "text-white" : "text-black"
-        }`}>
-        <Link to="/myAddedVisa">My Added Visa</Link>
-      </li>
-    ),
-    user && (
-      <li
-        key="myVisaApplication"
-        className={`font-roboto font-medium ${
-          theme === "dark" ? "text-white" : "text-black"
-        }`}>
-        <Link to="/myVisaApplication">My Visa Application</Link>
-      </li>
-    ),
+
+    <li
+      key="addVisa"
+      className={`font-roboto font-medium ${
+        theme === "dark" ? "text-white" : "text-black"
+      }`}>
+      <Link to="/addVisa">Add Visa</Link>
+    </li>,
+    <li
+      key="myAddedVisa"
+      className={`font-roboto font-medium ${
+        theme === "dark" ? "text-white" : "text-black"
+      }`}>
+      <Link to="/myAddedVisa">My Added Visa</Link>
+    </li>,
+    <li
+      key="myVisaApplication"
+      className={`font-roboto font-medium ${
+        theme === "dark" ? "text-white" : "text-black"
+      }`}>
+      <Link to="/myVisaApplication">My Visa Application</Link>
+    </li>,
     user && (
       <li
         key="profilePage"

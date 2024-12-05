@@ -7,7 +7,7 @@ const AllVisas = () => {
   useEffect(() => {
     const fetchVisas = async () => {
       const response = await fetch(
-        "https://backend-rho-drab-25.vercel.app/visas"
+        "https://backend-tau-vert-85.vercel.app/visas"
       );
       const data = await response.json();
       setVisas(data);

@@ -10,7 +10,7 @@ const MyVisaApplications = () => {
   userEmail = user?.email;
 
   useEffect(() => {
-    fetch(`https://backend-rho-drab-25.vercel.app/visas/email/${userEmail}`)
+    fetch(`https://backend-tau-vert-85.vercel.app/visas/email/${userEmail}`)
       .then((response) => response.json())
       .then((data) => setApplications(data))
       .catch((error) =>
@@ -19,7 +19,7 @@ const MyVisaApplications = () => {
   }, [userEmail]);
 
   const handleCancel = (id) => {
-    fetch(`https://backend-rho-drab-25.vercel.app/visas/delete/${id}`, {
+    fetch(`https://backend-tau-vert-85.vercel.app/visas/delete/${id}`, {
       method: "DELETE",
     })
       .then(() => setApplications(applications.filter((app) => app._id !== id)))
