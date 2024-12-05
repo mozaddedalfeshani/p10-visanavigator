@@ -28,7 +28,7 @@ const CardWithModal = ({ item }) => {
             if (data.deletedCount > 0) {
               Swal.fire({
                 title: "Deleted!",
-                text: "Your file has been deleted.",
+                text: "Your Visa Info has been deleted.",
                 icon: "success",
               });
             }
