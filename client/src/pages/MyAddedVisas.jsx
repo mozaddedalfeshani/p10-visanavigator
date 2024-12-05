@@ -10,7 +10,7 @@ const MyAddedVisas = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8000/visas/${user.email}`
+          `http://localhost:8000/visas/email/${user.email}`
         );
         const data = await response.json();
         // console.log("Data", data);

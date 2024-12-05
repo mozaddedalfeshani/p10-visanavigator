@@ -31,12 +31,22 @@ async function run() {
     });
 
     // get visa info by email
-    app.get("/visas/:email", async (req, res) => {
+    app.get("/visas/email/:email", async (req, res) => {
       const email = req.params.email;
 
       const result = await database.find({ email: email }).toArray();
       res.json(result);
     });
+
+    // get visa info by id
+    app.get("/visas/id/:id", async (req, res) => {
+      const id = req.params.id;
+      console.log(id);
+      const query = { _id: new ObjectId(id) };
+      const result = await database.findOne(query);
+      res.json(result);
+    });
+    // the address be like http://localhost:8000/visas/id/61f3b3b3b3b3b3b3b3b3b3b3
 
     //get visa info
     app.post("/addVisa", async (req, res) => {

@@ -43,7 +43,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/addVisa",
+        path: "addVisa",
         element: (
           <PrivateProvider>
             <AddVisa />
@@ -51,7 +51,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/myAddedVisa",
+        path: "myAddedVisa",
         element: (
           <PrivateProvider>
             <MyAddedVisas />
@@ -59,10 +59,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/updateVisa/:id",
+        path: "updateVisa/:id",
         element: <UpdateVisa />,
         loader: ({ params }) =>
-          fetch(`http://localhost:8000/visas/${params.id}`),
+          fetch(`http://localhost:8000/visas/id/${params.id}`),
       },
       {
         path: "/myVisaApplication",
