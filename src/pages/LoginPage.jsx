@@ -5,11 +5,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 const LoginPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/"; // Default to "/" if from is undefined
+  
+  console.log(from);
 
   return (
     <div className="container mx-auto">
-      <LoginForm />
+      <LoginForm loginForm={from} />
     </div>
   );
 };

@@ -3,7 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../providers/AuthProvider";
 
-export default function LoginForm() {
+export default function LoginForm(loginForm) {
+  const nextPath = loginForm.loginForm;
   const [login, setLogin] = useState(true);
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -14,7 +15,8 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
 
   //collect from useContext
-  const { googleSignIn, signInUser, createAccount, updateUserProfile } = useContext(AuthContext);
+  const { googleSignIn, signInUser, createAccount, user } =
+    useContext(AuthContext);
   const navigate = useNavigate();
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
@@ -55,7 +57,7 @@ export default function LoginForm() {
 
     try {
       const user = await createAccount(email, password, name, photoUrl);
-      navigate("/"); // Navigate to home after successful signup
+      navigate(nextPath); // Navigate to home after successful signup
     } catch (error) {
       console.error("Signup error: ", error);
     }
@@ -69,9 +71,22 @@ export default function LoginForm() {
 
     try {
       await signInUser(email, password);
-      navigate("/"); // Navigate to home after successful login
+      navigate(nextPath); // Navigate to home after successful login
     } catch (error) {
       console.error("Login error: ", error);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await googleSignIn(nextPath);
+      console.info("Google Signin success: ", user);
+      if (user) {
+        console.info("Google Signin success: user? ", user);
+        navigate(nextPath); // Navigate to home after successful login
+      }
+    } catch (error) {
+      console.error("Google Signin error: ", error);
     }
   };
 
@@ -157,13 +172,17 @@ export default function LoginForm() {
               <p className="text-center">or</p>
             </form>
             <div className="form-control ">
-              <button className="btn btn-secondary" onClick={googleSignIn}>
+              <button
+                className="btn btn-secondary"
+                onClick={handleGoogleSignIn}>
                 Sign up with Google
               </button>
             </div>
             <p className="text-center py-2">
               Already Have Account?{" "}
-              <span className="text-blue-400 cursor-pointer" onClick={() => setLogin(true)}>
+              <span
+                className="text-blue-400 cursor-pointer"
+                onClick={() => setLogin(true)}>
                 Login
               </span>
             </p>
@@ -227,13 +246,17 @@ export default function LoginForm() {
               </div>
               <p className="text-center">or</p>
               <div className="form-control ">
-                <button className="btn btn-secondary" onClick={googleSignIn}>
+                <button
+                  className="btn btn-secondary"
+                  onClick={handleGoogleSignIn}>
                   Login with Google
                 </button>
               </div>
               <p className="text-center py-2">
                 Don't have an account?{" "}
-                <span className="text-blue-400 cursor-pointer" onClick={() => setLogin(false)}>
+                <span
+                  className="text-blue-400 cursor-pointer"
+                  onClick={() => setLogin(false)}>
                   Sign up
                 </span>
               </p>

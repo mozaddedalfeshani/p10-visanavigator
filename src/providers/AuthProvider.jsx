@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import app from "../services/authService";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
@@ -53,12 +54,20 @@ const AuthProvider = ({ children }) => {
   };
 
   //function to sign in with Google
-  const googleSignIn = () => {
+  const googleSignIn = (way) => {
     setLoading(true);
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         setUser(result.user);
         setLoading(false);
+        console.log("way ");
+        window.location.href = way;
+        // swall message for successfull modal
+        Swal.fire({
+          icon: "success",
+          title: "Login Successfull",
+          text: "Welcome to the website",
+        });
       })
       .catch((error) => {
         console.error(error);
