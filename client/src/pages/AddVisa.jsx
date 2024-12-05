@@ -229,7 +229,7 @@ const AddVisa = () => {
               name="validity"
               value={formData.validity}
               onChange={handleChange}
-              placeholder="Enter validity period (in days)"
+              placeholder="Enter validity period (in day's)"
               className="input input-bordered w-full"
             />
           </div>

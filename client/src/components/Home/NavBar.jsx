@@ -4,7 +4,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import UserIcon from "../common/UserIcon";
 
 const NavBar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, signOutUser } = useContext(AuthContext);
 
   const items = [
     <li key="home" className="text-black font-roboto font-medium">
@@ -73,9 +73,9 @@ const NavBar = () => {
         </div>
         <div className="navbar-end">
           {user ? (
-            <Link to="/profilePage">
+            <button onClick={signOutUser} className="btn btn-ghost ">
               <UserIcon user={user} />
-            </Link>
+            </button>
           ) : (
             <Link to="/authPage" className="btn">
               Login

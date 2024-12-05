@@ -1,11 +1,10 @@
 import React from "react";
-import { FiLogOut } from "react-icons/fi";
 
 const UserIcon = ({ user }) => {
   const firstName = user?.displayName?.split(" ")[0] || "Anonymous";
   return (
     <div className="flex-row flex gap-3 shadow-sm items-center justify-around">
-      <button className="btn btn-ghost ">
+      <button className="flex flex-row justify-center items-center gap-1">
         <div className="avatar online">
           <div className="w-10 rounded-full">
             <img
