@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import Swal from "sweetalert2"; // Add this import
 
 const AddVisa = () => {
   const { user } = useContext(AuthContext);
@@ -35,10 +36,11 @@ const AddVisa = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add user email to the formDatas
+    // Add user email and appliedDate to the formData
     const dataToSubmit = {
       ...formData,
       email: user?.email || "No user email",
+      appliedDate: new Date().toISOString(),
     };
 
     const jsonData = JSON.stringify(dataToSubmit, null, 2);
@@ -56,6 +58,26 @@ const AddVisa = () => {
       .then((data) => {
         console.log(data);
         console.log("Done sending data to the server");
+        // Clear the form
+        setFormData({
+          country_image: "",
+          country_name: "",
+          visa_type: "",
+          processing_time: "",
+          required_documents: [],
+          description: "",
+          age_restriction: "",
+          fee: "",
+          validity: "",
+          application_method: "",
+        });
+        // Show Swal notification
+        Swal.fire({
+          title: "Success!",
+          text: "Visa added successfully.",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
       })
       .catch((err) => {
         console.error(err);

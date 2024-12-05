@@ -44,7 +44,7 @@ const MyVisaApplications = () => {
               <p>Validity: {app.validity} days</p>
               <p>Application Method: {app.application_method}</p>
               <p>
-                Applied Date: {new Date(app.applied_date).toLocaleDateString()}
+                Applied Date: {new Date(app.appliedDate).toLocaleDateString()}
               </p>
               <p>
                 Applicant's Name: {app.first_name} {app.last_name}
