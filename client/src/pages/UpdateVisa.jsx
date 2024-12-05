@@ -6,7 +6,7 @@ const UpdateVisa = () => {
   const data = useLoaderData();
   //disturcture the data
 
-  return <div>updata visa {data._id}</div>;
+  return <div>This will show specific visa information</div>;
 };
 
 export default UpdateVisa;

@@ -59,14 +59,15 @@ async function run() {
     });
 
     // Update visa info
-    app.put("/api/visas/:id", async (req, res) => {
+    app.put("/visas/updateVisa:id", async (req, res) => {
       const id = req.params.id;
       const updatedVisa = req.body;
-      await database.updateOne(
+      const result = await database.updateOne(
         { _id: new ObjectID(id) },
         { $set: updatedVisa }
       );
-      res.json({ status: "ok" });
+      // res.json({ status: "ok" });
+      res.send(result);
     });
 
     // Delete visa info

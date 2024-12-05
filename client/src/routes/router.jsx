@@ -28,8 +28,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/visa-details/:country",
-        element: <div>Visa details</div>,
+        element: <UpdateVisa />,
+        loader: ({ params }) => {
+          fetch(`http://localhost:8000/visas/${params.country}`);
+        },
       },
+
       {
         path: "/authPage",
         element: <LoginPage />,

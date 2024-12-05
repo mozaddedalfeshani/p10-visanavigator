@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Card = ({ visaCard, handleSeeDetails }) => {
   return (
@@ -30,7 +31,11 @@ const Card = ({ visaCard, handleSeeDetails }) => {
         <div className="badge badge-primary"> {visaCard.validity}</div>
 
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">See Details</button>
+          <Link
+            to={`/visa-details/${visaCard._id}`}
+            className="btn btn-primary">
+            See Details
+          </Link>
         </div>
       </div>
     </div>
