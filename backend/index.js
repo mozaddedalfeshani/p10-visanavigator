@@ -62,10 +62,9 @@ async function run() {
       const id = req.params.id;
       const updatedVisa = req.body;
       const result = await database.updateOne(
-        { _id: new ObjectID(id) },
+        { _id: new ObjectId(id) },
         { $set: updatedVisa }
       );
-      // res.json({ status: "ok" });
       res.send(result);
     });
 

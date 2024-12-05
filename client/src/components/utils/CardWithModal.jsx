@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
 
-const CardWithModal = ({ item }) => {
+const CardWithModal = ({ item, fetchData }) => {
   const { _id } = item;
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
@@ -22,11 +21,39 @@ const CardWithModal = ({ item }) => {
   const handleUpdate = (e) => {
     e.preventDefault();
     console.log(formData); // Log form data to console
-    Swal.fire({
-      title: "Updated!",
-      text: "Your Visa Info has been updated.",
-      icon: "success",
-    });
+    fetch(`http://localhost:8000/visas/updateVisa${_id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          console.log("Data", data);
+          Swal.fire({
+            title: "Updated!",
+            text: "Your Visa Info has been updated.",
+            icon: "success",
+          });
+          fetchData();
+        } else {
+          Swal.fire({
+            title: "Error!",
+            text: "Failed to update Visa Info.",
+            icon: "error",
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        Swal.fire({
+          title: "Error!",
+          text: "An error occurred while updating Visa Info.",
+          icon: "error",
+        });
+      });
     setShowModal(false);
   };
 
@@ -43,14 +70,38 @@ const CardWithModal = ({ item }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your Visa Info has been deleted.",
-          icon: "success",
-        });
+        fetch(`http://localhost:8000/visas/delete/${id}`, {
+          method: "DELETE",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your Visa Info has been deleted.",
+                icon: "success",
+              });
+              fetchData();
+            } else {
+              Swal.fire({
+                title: "Error!",
+                text: "Failed to delete Visa Info.",
+                icon: "error",
+              });
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            Swal.fire({
+              title: "Error!",
+              text: "An error occurred while deleting Visa Info.",
+              icon: "error",
+            });
+          });
       }
     });
   };
+
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <figure>
