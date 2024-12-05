@@ -33,9 +33,9 @@ async function run() {
     // get visa info by email
     app.get("/visas/:email", async (req, res) => {
       const email = req.params.email;
-      const userVisa = client.db("userSpecific").collection(email);
-      const visas = await userVisa.find().toArray();
-      res.json(visas);
+
+      const result = await database.find({ email: email }).toArray();
+      res.json(result);
     });
 
     //get visa info
@@ -52,7 +52,10 @@ async function run() {
     app.put("/api/visas/:id", async (req, res) => {
       const id = req.params.id;
       const updatedVisa = req.body;
-      await database.updateOne({ _id: new ObjectID(id) }, { $set: updatedVisa });
+      await database.updateOne(
+        { _id: new ObjectID(id) },
+        { $set: updatedVisa }
+      );
       res.json({ status: "ok" });
     });
 
