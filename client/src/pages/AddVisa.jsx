@@ -64,7 +64,7 @@ const AddVisa = () => {
 
   return (
     <div className="flex  justify-center items-center min-h-screen bg-gray-100">
-      <div className="card w-full max-w-lg shadow-lg my-4 shadow-lg bg-white p-6 rounded-lg">
+      <div className="card w-full max-w-lg  my-4 shadow-lg bg-white p-6 rounded-lg">
         <h1 className="text-2xl font-bold mb-4">Add Visa</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">

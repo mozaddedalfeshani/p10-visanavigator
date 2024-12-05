@@ -24,7 +24,9 @@ const NavBar = () => {
       </li>
     ),
     user && (
-      <li key="myVisaApplication" className="text-black font-roboto font-medium">
+      <li
+        key="myVisaApplication"
+        className="text-black font-roboto font-medium">
         <Link to="/myVisaApplication">My Visa Application</Link>
       </li>
     ),
@@ -37,8 +39,8 @@ const NavBar = () => {
   return (
     <div>
       <div className="navbar bg-base-100 shadow p-3">
-        <div className="navbar-start">
-          <div className="dropdown">
+        <div className="block md:hidden ">
+          <div className="dropdown lg:hidden">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -60,6 +62,8 @@ const NavBar = () => {
               {items}
             </ul>
           </div>
+        </div>
+        <div className="navbar-start">
           <a className="btn btn-ghost text-xl">VisaEase</a>
         </div>
         <div className="navbar-center hidden lg:flex">
