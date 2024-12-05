@@ -1,10 +1,11 @@
 const { MongoClient, ObjectID, ObjectId } = require("mongodb");
 const express = require("express");
 const cors = require("cors");
+require("dotenv").config();
 
 const port = 8000;
 // Replace the uri string with your connection string.
-const uri = "mongodb://localhost:27017";
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@visaease.bgjaz.mongodb.net/?retryWrites=true&w=majority&appName=visaease`;
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -14,9 +15,11 @@ const client = new MongoClient(uri);
 async function run() {
   try {
     await client.connect();
+
     // this const are for lates card faces
     const database = client.db("visaease").collection("visas");
     const show = await database.find().toArray();
+    console.log("Connected to the databas");
 
     //ALL GET , POST
     app.get("/latestCards", async (req, res) => {
