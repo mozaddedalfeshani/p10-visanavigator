@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Card = ({ visaCard, handleSeeDetails }) => {
   return (
     <div
-      onClick={() => handleSeeDetails(visaCard)}
+      onClick={() => handleSeeDetails(visaCard._id)}
       className="card bg-base-100 lg:w-96 md:w-80 shadow-xl">
       <figure>
         <img src={visaCard.country_image} alt={visaCard.country_name} />

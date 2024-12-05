@@ -19,8 +19,8 @@ const AllVisas = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-auto">
+    <div className="flex flex-col my-5 items-center justify-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mx-auto">
         {visas.map(
           (visa) => (
             console.log(visa),
@@ -34,7 +34,6 @@ const AllVisas = () => {
           )
         )}
       </div>
-      )
     </div>
   );
 };
