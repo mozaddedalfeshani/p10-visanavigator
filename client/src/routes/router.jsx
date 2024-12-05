@@ -11,6 +11,7 @@ import AddVisa from "../pages/AddVisa";
 import MyAddedVisas from "../pages/MyAddedVisas.jsx";
 import MyVisaApplications from "../pages/MyVisaApplications.jsx";
 import AllVisas from "../pages/AllVisas.jsx";
+import UpdateVisa from "../pages/UpdateVisa.jsx";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,12 @@ const router = createBrowserRouter([
             <MyAddedVisas />
           </PrivateProvider>
         ),
+      },
+      {
+        path: "/updateVisa/:id",
+        element: <UpdateVisa />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:8000/visas/${params.id}`),
       },
       {
         path: "/myVisaApplication",

@@ -1,5 +1,6 @@
 import React from "react";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const CardWithModal = ({ item }) => {
   const { _id } = item;
@@ -49,7 +50,9 @@ const CardWithModal = ({ item }) => {
         <p>Validity: {item.validity} days</p>
         <p>Application Method: {item.application_method}</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">Update</button>
+          <Link to={`/updateVisa/${_id}`} className="btn btn-primary">
+            Update
+          </Link>
           <button
             className="btn btn-secondary"
             onClick={() => handleDelete(_id)}>
