@@ -8,7 +8,7 @@ export default function MyProfile() {
     <div className="min-h-screen flex items-center justify-center">
       <div className="container mx-auto card flex flex-col items-center p-6  rounded-md">
         <div className="mb-6">
-          <h1 className="text-3xl font-semibold text-gray-800 text-center">
+          <h1 className="text-3xl font-semibold  text-center">
             Welcome, {user?.displayName || "User Name"}
           </h1>
         </div>
