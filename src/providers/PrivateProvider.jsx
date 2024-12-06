@@ -6,7 +6,7 @@ import LoadingUI from "../components/common/LoadingUI";
 export default function PrivateProvider({ children }) {
   const { user, loading } = useContext(AuthContext); // Get user and loading state from AuthContext
   const location = useLocation(); // Get the current location
-  console.log(location.pathname);
+  // console.log(location.pathname);
   if (loading) {
     return <LoadingUI />; // Show loading UI while authentication state is being determined
   }

@@ -7,7 +7,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/"; // Default to "/" if from is undefined
   
-  console.log(from);
+  // console.log(from);
 
   return (
     <div className="container mx-auto">

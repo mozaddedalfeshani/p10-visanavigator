@@ -21,7 +21,7 @@ const AllVisas = () => {
     const response = await fetch(
       `https://backend-tau-vert-85.vercel.app/type/${e.target.value}`
     );
-    console.log(e.target.value);
+    // console.log(e.target.value);
 
     const data = await response.json();
     setVisas(data);

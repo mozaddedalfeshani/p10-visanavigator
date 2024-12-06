@@ -50,7 +50,7 @@ const UpdateVisa = () => {
       applicant_name: fullName,
       applicant_email: user.email,
     };
-    console.log(visaData);
+    // console.log(visaData);
 
     try {
       const response = await fetch(
