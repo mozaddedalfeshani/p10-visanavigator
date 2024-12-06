@@ -5,14 +5,13 @@ import { AuthContext } from "../providers/AuthProvider";
 
 const MyVisaApplications = () => {
   const [applications, setApplications] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   let userEmail = "f";
   const { user } = useContext(AuthContext);
   userEmail = user?.email;
 
   useEffect(() => {
-    fetch(
-      `https://backend-tau-vert-85.vercel.app/visas/apply/email/${userEmail}`
-    )
+    fetch(`http://localhost:8000/visas/apply/email/${userEmail}`)
       .then((response) => response.json())
       .then((data) => setApplications(data))
       .catch((error) =>
@@ -21,7 +20,7 @@ const MyVisaApplications = () => {
   }, [userEmail]);
 
   const handleCancel = (id) => {
-    fetch(`https://backend-tau-vert-85.vercel.app/visas/delete/${id}`, {
+    fetch(`http://localhost:8000/visas/apply/delete/${id}?email=${userEmail}`, {
       method: "DELETE",
     })
       .then(() => setApplications(applications.filter((app) => app._id !== id)))
@@ -30,9 +29,32 @@ const MyVisaApplications = () => {
       );
   };
 
+  const handleSearch = () => {
+    fetch(
+      `http://localhost:8000/visas/search/email/${userEmail}?country=${searchTerm}`
+    )
+      .then((response) => response.json())
+      .then((data) => setApplications(data))
+      .catch((error) =>
+        console.error("Error fetching visa applications:", error)
+      );
+  };
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">My Visa Applications</h1>
+      <div className="mb-4">
+        <input
+          type="text"
+          placeholder="Search by country name"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="input input-bordered w-full max-w-xs"
+        />
+        <button className="btn btn-primary ml-2" onClick={handleSearch}>
+          Search
+        </button>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {applications.map((app) => (
           <div key={app._id} className="card shadow-lg compact bg-base-100">
