@@ -60,8 +60,7 @@ const AuthProvider = ({ children }) => {
       .then((result) => {
         setUser(result.user);
         setLoading(false);
-        console.log("way ");
-        window.location.href = way;
+        
         // swall message for successfull modal
         Swal.fire({
           icon: "success",

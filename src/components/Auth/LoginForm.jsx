@@ -79,12 +79,8 @@ export default function LoginForm(loginForm) {
 
   const handleGoogleSignIn = async () => {
     try {
-      await googleSignIn(nextPath);
-      console.info("Google Signin success: ", user);
-      if (user) {
-        console.info("Google Signin success: user? ", user);
-        navigate(nextPath); // Navigate to home after successful login
-      }
+      await googleSignIn();
+      navigate(nextPath); // Navigate to home after successful Google signin
     } catch (error) {
       console.error("Google Signin error: ", error);
     }
