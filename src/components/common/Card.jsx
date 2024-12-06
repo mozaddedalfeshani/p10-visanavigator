@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 
 const Card = ({ visaCard }) => {
   return (
-    <div
-      className="card bg-base-100 lg:w-96 md:w-80 shadow-xl">
+    <div className="card bg-base-100  shadow-xl">
       <figure>
         <img src={visaCard.country_image} alt={visaCard.country_name} />
       </figure>
