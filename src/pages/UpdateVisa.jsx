@@ -53,13 +53,16 @@ const UpdateVisa = () => {
     console.log(visaData);
 
     try {
-      const response = await fetch("http://localhost:8000/applyVisa", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(visaData),
-      });
+      const response = await fetch(
+        "https://backend-tau-vert-85.vercel.app/applyVisa",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(visaData),
+        }
+      );
       const result = await response.json();
       if (result.status === "ok") {
         Swal.fire({
