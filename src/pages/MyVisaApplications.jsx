@@ -11,7 +11,9 @@ const MyVisaApplications = () => {
   userEmail = user?.email;
 
   useEffect(() => {
-    fetch(`http://localhost:8000/visas/apply/email/${userEmail}`)
+    fetch(
+      `https://backend-tau-vert-85.vercel.app/visas/apply/email/${userEmail}`
+    )
       .then((response) => response.json())
       .then((data) => setApplications(data))
       .catch((error) =>
@@ -20,9 +22,12 @@ const MyVisaApplications = () => {
   }, [userEmail]);
 
   const handleCancel = (id) => {
-    fetch(`http://localhost:8000/visas/apply/delete/${id}?email=${userEmail}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://backend-tau-vert-85.vercel.app/visas/apply/delete/${id}?email=${userEmail}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then(() => setApplications(applications.filter((app) => app._id !== id)))
       .catch((error) =>
         console.error("Error cancelling visa application:", error)
@@ -31,7 +36,7 @@ const MyVisaApplications = () => {
 
   const handleSearch = () => {
     fetch(
-      `http://localhost:8000/visas/search/email/${userEmail}?country=${searchTerm}`
+      `https://backend-tau-vert-85.vercel.app/visas/search/email/${userEmail}?country=${searchTerm}`
     )
       .then((response) => response.json())
       .then((data) => setApplications(data))
