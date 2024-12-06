@@ -66,7 +66,7 @@ const MyVisaApplications = () => {
               />
             </figure>
             <div className="card-body">
-              <h2 className="card-title">{app.country_name}</h2>
+              <h2 className="card-title">{app.country}</h2>
               <div className="badge badge-primary mb-2">{app.visa_type}</div>
 
               <p>Processing Time: {app.processing_time} days</p>
@@ -74,7 +74,7 @@ const MyVisaApplications = () => {
               <p>Validity: {app.validity} days</p>
               <p>Application Method: {app.application_method}</p>
               <p>
-                Applied Date: {new Date(app.appliedDate).toLocaleDateString()}
+                Applied Date: {new Date(app.applied_date).toLocaleDateString()}
               </p>
               <p>Applicant's Name: {user.displayName}</p>
               <p>Applicant’s Email: {app.email}</p>
