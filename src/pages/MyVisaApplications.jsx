@@ -77,7 +77,7 @@ const MyVisaApplications = () => {
                 Applied Date: {new Date(app.applied_date).toLocaleDateString()}
               </p>
               <p>Applicant's Name: {user.displayName}</p>
-              <p>Applicant’s Email: {app.email}</p>
+              <p>Applicant’s Email: {app.applicant_email}</p>
               <div className="badge badge-info mb-2">
                 Status: {app.application_method}
               </div>
