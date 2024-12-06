@@ -224,11 +224,11 @@ const AddVisa = () => {
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1">Validity:</label>
             <input
-              type="text"
+              type="text" // Change input type back to text
               name="validity"
               value={formData.validity}
               onChange={handleChange}
-              placeholder="Enter validity period (in day's)"
+              placeholder="Enter validity period (add days or months after the number)"
               className="input input-bordered w-full"
             />
           </div>
