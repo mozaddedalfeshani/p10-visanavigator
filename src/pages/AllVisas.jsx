@@ -7,7 +7,9 @@ const AllVisas = () => {
   const [value, setValue] = useState("visas");
   useEffect(() => {
     const fetchVisas = async () => {
-      const response = await fetch(`https://backend-tau-vert-85.vercel.app/${value}`);
+      const response = await fetch(
+        `https://backend-tau-vert-85.vercel.app/${value}`
+      );
       const data = await response.json();
       setVisas(data);
     };
@@ -32,7 +34,7 @@ const AllVisas = () => {
   return (
     <div className="flex flex-col my-5 items-center justify-center container mx-auto">
       <h1 className="text-3xl font-bold my-2">All Visas</h1>
-      <div className="my-5 flex flex-row justify-end items-center w-full">
+      <div className="my-5 flex flex-row justify-between items-center w-full">
         <label htmlFor="visas" className="mr-2">
           Select a visa type:
         </label>
