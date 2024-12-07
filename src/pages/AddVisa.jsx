@@ -135,7 +135,7 @@ const AddVisa = () => {
               name="processing_time"
               value={formData.processing_time}
               onChange={handleChange}
-              placeholder="Enter processing time"
+              placeholder="exmple: 3 days / 1 month"
               className="input input-bordered w-full"
             />
           </div>
@@ -206,7 +206,7 @@ const AddVisa = () => {
               name="age_restriction"
               value={formData.age_restriction}
               onChange={handleChange}
-              placeholder="Enter age restriction"
+              placeholder="exmple: 18 years and above"
               className="input input-bordered w-full"
             />
           </div>
