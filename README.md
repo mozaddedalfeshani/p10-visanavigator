@@ -12,7 +12,7 @@ A user-friendly Visa Navigator Portal that simplifies the process of checking vi
 
 ## 🔗 Live Demo
 
-[Live Website](https://visaease-55e7b.web.app/)
+[Live Website](https://visaease-55e7b.web.app/){:target="_blank"}
 
 ## 🚀 Technologies Used
 
@@ -24,6 +24,7 @@ A user-friendly Visa Navigator Portal that simplifies the process of checking vi
 
 ## 📦 Packages Used
 
+- **animate.css:** ^4.1.1
 - **axios:** ^1.7.9
 - **dotenv:** ^16.4.7
 - **firebase:** ^11.0.2
