@@ -94,6 +94,10 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "*",
+    element: <PageNotFound />,
+  },
 ]);
 
 export default router;
