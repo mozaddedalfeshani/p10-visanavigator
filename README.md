@@ -12,7 +12,7 @@ A user-friendly Visa Navigator Portal that simplifies the process of checking vi
 
 ## 🔗 Live Demo
 
-[Live Website](https://visaease-55e7b.web.app/){:target="_blank"}
+<a href="https://visaease-55e7b.web.app/" target="_blank">Live Website</a>
 
 ## 🚀 Technologies Used
 
