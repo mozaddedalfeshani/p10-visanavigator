@@ -92,8 +92,8 @@ const UpdateVisa = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
-      <div className="card w-full max-w-md bg-white shadow-xl">
+    <div className="flex items-center justify-center min-h-screen  p-4">
+      <div className="card w-full max-w-md shadow-xl">
         <figure>
           <img
             src={country_image}
@@ -103,7 +103,7 @@ const UpdateVisa = () => {
         </figure>
         <div className="card-body">
           <h2 className="card-title text-xl md:text-2xl">{country_name}</h2>
-          <p className="text-gray-700 text-sm md:text-base">{description}</p>
+          <p className=" text-sm md:text-base">{description}</p>
           <div className="badge badge-primary">{visa_type}</div>
           <div className="badge badge-secondary">
             Processing Time: {processing_time}
